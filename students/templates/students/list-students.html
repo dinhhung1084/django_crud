@@ -1,0 +1,24 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+    List Students | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+  <h4><small>List Students</small></h4>
+  <hr>
+  {% if students %}
+    {% for student in students %}
+    <h2>{{ student.name }}</h2>
+    <p>Phone: {{ student.phone }}</p>
+    <p>Email: {{ student.email }}</p>
+    <p>Age: {{ student.age }}</p>
+    <p>From: {{ student.from_city }}</p>
+    <a href="{% url 'students:update-student' student.id %}">Edit</a>
+    <a href="{% url 'students:delete-student' student.id %}" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+    <br><br>
+    {% endfor %}
+  {% else %}
+    No students found.
+  {% endif %}
+{% endblock content %}

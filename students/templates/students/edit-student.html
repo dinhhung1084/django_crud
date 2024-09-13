@@ -1,0 +1,38 @@
+{% extends "layouts/layout.html" %}
+
+{% block title %}
+    Edit Student | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+  <h4><small>Edit Student</small></h4>
+  <hr>
+  <div class="card-body">
+    <div class="table-responsive">
+      <form action="{% url 'students:update-student' object.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">                    
+          <label for="name">Name<span style="color: red">*</span> :</label>
+          <input type="text" class="form-control" name="name" value="{{ object.name }}" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone<span style="color: red">*</span> :</label>
+          <input type="text" class="form-control" name="phone" value="{{ object.phone }}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email<span style="color: red">*</span> :</label>
+          <input type="email" class="form-control" name="email" value="{{ object.email }}" required>
+        </div>
+        <div class="form-group">
+          <label for="age">Age<span style="color: red">*</span> :</label>
+          <input type="number" class="form-control" name="age" value="{{ object.age }}" required>
+        </div>
+        <div class="form-group">
+          <label for="from_city">From<span style="color: red">*</span> :</label>
+          <input type="text" class="form-control" name="from_city" value="{{ object.from_city }}" required>
+        </div>
+        <button class="btn btn-secondary" type="submit">Update Student</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
